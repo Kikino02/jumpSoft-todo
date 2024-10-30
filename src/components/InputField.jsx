@@ -5,6 +5,7 @@ export default function InputField({
   placeholder,
   onChange,
   options,
+  isRequired,
 }) {
   const today = new Date().toISOString().split("T")[0];
 
@@ -15,7 +16,7 @@ export default function InputField({
         value={value}
         className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
         onChange={onChange}
-        required
+        required={isRequired}
       >
         <option value="" disabled>
           {placeholder}
@@ -38,7 +39,7 @@ export default function InputField({
         placeholder={placeholder}
         onChange={onChange}
         className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
-        required
+        required={isRequired}
       />
     );
   }
@@ -51,7 +52,7 @@ export default function InputField({
       value={value}
       onChange={onChange}
       className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
-      required
+      required={isRequired}
       autoComplete="off"
       {...(type === "date" && { min: today })}
     />

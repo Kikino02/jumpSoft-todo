@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
 
+function generateUUID() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
 export default function Modal({ todo, onClose, onSave, calculateDays }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [isCreating, setIsCreating] = useState(todo.id === "");
   const [editedTodo, setEditedTodo] = useState({ ...todo });
 
   const handleChange = (e) => {
@@ -11,6 +20,10 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
   };
 
   const handleSave = () => {
+    if (editedTodo.id === "") {
+      editedTodo.id = generateUUID();
+      editedTodo.status = "To Do";
+    }
     const { index, ...todoData } = editedTodo;
     onSave({ ...todoData, index });
     setIsEditing(false);
@@ -22,7 +35,7 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full m-4 flex flex-col justify-between h-[350px]">
         {/* Main Content */}
         <div className="flex-grow overflow-auto mb-4">
-          {isEditing ? (
+          {isEditing || isCreating ? (
             <div className="flex flex-col gap-4">
               <InputField
                 type="text"
@@ -63,18 +76,6 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
               <p className="text-gray-500 mb-4">
                 <span className="font-bold">Date:</span>{" "}
                 {new Date(todo.date).toLocaleDateString("sk-SK")}
-                <span
-                  className={`ml-1 ${
-                    calculateDays(todo.date) <= 1
-                      ? "text-red-500"
-                      : calculateDays(todo.date) <= 5
-                      ? "text-yellow-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  ({calculateDays(todo.date)}{" "}
-                  {calculateDays(todo.date) === 1 ? "day" : "days"})
-                </span>
               </p>
               <p className="text-gray-500 mb-4 whitespace-normal break-words">
                 <span className="font-bold">Description:</span>{" "}
@@ -103,7 +104,7 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
         <div className="flex gap-2">
           <button
             onClick={() => {
-              if (isEditing) {
+              if (isCreating || isEditing) {
                 handleSave();
               } else {
                 setIsEditing(true);
@@ -111,7 +112,9 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
             }}
             className="w-full bg-blue-500 text-white py-2 rounded-md font-semibold hover:bg-blue-600"
           >
-            {isEditing ? "Save" : "Edit"}
+            {isCreating && !isEditing && "Add"}
+            {!isCreating && !isEditing && "Edit"}
+            {!isCreating && isEditing && "Save"}
           </button>
           <button
             onClick={onClose}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "name": "Complete project report",
+    "description": "Finish the final report for the project, including data analysis and recommendations.",
+    "date": "2024-11-01",
+    "priority": "H",
+    "status": "To Do"
+  },
+  {
+    "id": "2",
+    "name": "Grocery shopping",
+    "description": "Buy essentials like milk, eggs, bread, and vegetables for the week.",
+    "date": "2024-10-29",
+    "priority": "M",
+    "status": "In Progress"
+  },
+  {
+    "id": "3",
+    "name": "Call John",
+    "description": "Discuss the upcoming event details and confirm attendance.",
+    "date": "2024-10-30",
+    "priority": "L",
+    "status": "To Do"
+  },
+  {
+    "id": "4",
+    "name": "Submit assignment",
+    "description": "Upload the assignment before the due date on the portal.",
+    "date": "2024-10-28",
+    "priority": "H",
+    "status": "Done"
+  },
+  {
+    "id": "5",
+    "name": "Yoga class",
+    "description": "Attend the morning yoga class for relaxation and fitness.",
+    "date": "2024-11-02",
+    "priority": "M",
+    "status": "To Do"
+  }
+]
