@@ -1,8 +1,11 @@
-# React + Vite
+# To-Do Aplikácia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Jednoduchá aplikácia pre správu úloh s funkciami pridávania, aktualizácie stavu a odstraňovania úloh.
 
-Currently, two official plugins are available:
+## Inštalácia a Spustenie
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Klonovanie Repozitára**  
+   Klonujte tento repozitár na váš lokálny počítač:
+   ```bash
+   git clone [adresa-repozitára]
+   ```
