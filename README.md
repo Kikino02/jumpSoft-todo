@@ -42,3 +42,5 @@ Zobrazenie Dátumu a Odpočítavanie Dní: Dátum úlohy sa zobrazuje s odpočí
 Modálne Okno pre Detaily Úlohy: Používatelia môžu zobraziť alebo upraviť detaily úlohy v modálnom okne.
 
 Validácia Formulára: Základná validácia formulára zabezpečuje, že všetky povinné polia sú vyplnené pred odoslaním.
+
+Počítadlo Zostávajúcich Úloh: Zobrazuje počet zostávajúcich úloh v stĺpcoch "To Do" a "In Progress", ktoré ešte treba dokončiť.
