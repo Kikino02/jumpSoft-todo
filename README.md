@@ -11,7 +11,7 @@ Jednoduchá aplikácia pre správu úloh s funkciami pridávania, aktualizácie 
    ```
 2. **Inštalácia Závislostí**
    ```bash
-   cd nazov-vasho-projektu
+   cd nazov-vášho-projektu
    npm install
    ```
 3. **Spustenie Vývojového Servera**
