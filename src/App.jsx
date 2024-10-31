@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./components/Modal";
-import data from "../public/data.json";
+import data from "./assets/data.json";
 import TodoList from "./components/TodoList";
 
 export default function App() {

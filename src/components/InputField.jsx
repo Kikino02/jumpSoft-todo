@@ -14,7 +14,7 @@ export default function InputField({
       <select
         name={name}
         value={value}
-        className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
+        className="w-full border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
         onChange={onChange}
         required={isRequired}
       >
@@ -38,7 +38,7 @@ export default function InputField({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
+        className="w-full border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
         required={isRequired}
       />
     );
@@ -51,7 +51,7 @@ export default function InputField({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className="border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
+      className="w-full border border-gray-300 px-4 py-2 rounded-md outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200"
       required={isRequired}
       autoComplete="off"
       {...(type === "date" && { min: today })}

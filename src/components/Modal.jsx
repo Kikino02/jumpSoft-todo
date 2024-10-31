@@ -9,70 +9,103 @@ function generateUUID() {
   });
 }
 
-export default function Modal({ todo, onClose, onSave, calculateDays }) {
+export default function Modal({ todo, onClose, onSave }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isCreating, setIsCreating] = useState(todo.id === "");
   const [editedTodo, setEditedTodo] = useState({ ...todo });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditedTodo((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" })); // Clear error on input change
   };
 
   const handleSave = () => {
+    const newErrors = {};
+    if (!editedTodo.name) newErrors.name = "Name is required.";
+    if (!editedTodo.date) newErrors.date = "Date is required.";
+    if (!editedTodo.description)
+      newErrors.description = "Description is required.";
+    if (!editedTodo.priority) newErrors.priority = "Priority is required.";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     if (editedTodo.id === "") {
       editedTodo.id = generateUUID();
       editedTodo.status = "To Do";
     }
-    const { index, ...todoData } = editedTodo;
-    onSave({ ...todoData, index });
+
+    onSave(editedTodo);
     setIsEditing(false);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full m-4 flex flex-col justify-between h-[350px]">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full m-4 flex flex-col justify-between h-[400px]">
         {/* Main Content */}
         <div className="flex-grow overflow-auto mb-4">
           {isEditing || isCreating ? (
             <div className="flex flex-col gap-4">
-              <InputField
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={editedTodo.name}
-                onChange={handleChange}
-                isRequired={true}
-              />
-              <InputField
-                type="date"
-                name="date"
-                value={editedTodo.date}
-                onChange={handleChange}
-                isRequired={true}
-              />
-              <InputField
-                type="textarea"
-                name="description"
-                placeholder="Description"
-                value={editedTodo.description}
-                onChange={handleChange}
-                isRequired={true}
-              />
-              <InputField
-                type="select"
-                name="priority"
-                placeholder="Priority"
-                value={editedTodo.priority}
-                onChange={handleChange}
-                isRequired={true}
-                options={[
-                  { value: "H", label: "High" },
-                  { value: "M", label: "Medium" },
-                  { value: "L", label: "Low" },
-                ]}
-              />
+              <div>
+                <InputField
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={editedTodo.name}
+                  onChange={handleChange}
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm">{errors.name}</p>
+                )}
+              </div>
+
+              <div>
+                <InputField
+                  type="date"
+                  name="date"
+                  value={editedTodo.date}
+                  onChange={handleChange}
+                />
+                {errors.date && (
+                  <p className="text-red-500 text-sm">{errors.date}</p>
+                )}
+              </div>
+
+              <div>
+                <InputField
+                  type="textarea"
+                  name="description"
+                  placeholder="Description"
+                  value={editedTodo.description}
+                  onChange={handleChange}
+                />
+                {errors.description && (
+                  <p className="text-red-500 text-sm">{errors.description}</p>
+                )}
+              </div>
+
+              <div>
+                <InputField
+                  type="select"
+                  name="priority"
+                  placeholder="Priority"
+                  value={editedTodo.priority}
+                  onChange={handleChange}
+                  options={[
+                    { value: "H", label: "High" },
+                    { value: "M", label: "Medium" },
+                    { value: "L", label: "Low" },
+                  ]}
+                />
+                {errors.priority && (
+                  <p className="text-red-500 text-sm">{errors.priority}</p>
+                )}
+              </div>
             </div>
           ) : (
             <>
