@@ -43,12 +43,14 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
                 placeholder="Name"
                 value={editedTodo.name}
                 onChange={handleChange}
+                isRequired={true}
               />
               <InputField
                 type="date"
                 name="date"
                 value={editedTodo.date}
                 onChange={handleChange}
+                isRequired={true}
               />
               <InputField
                 type="textarea"
@@ -56,6 +58,7 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
                 placeholder="Description"
                 value={editedTodo.description}
                 onChange={handleChange}
+                isRequired={true}
               />
               <InputField
                 type="select"
@@ -63,6 +66,7 @@ export default function Modal({ todo, onClose, onSave, calculateDays }) {
                 placeholder="Priority"
                 value={editedTodo.priority}
                 onChange={handleChange}
+                isRequired={true}
                 options={[
                   { value: "H", label: "High" },
                   { value: "M", label: "Medium" },
